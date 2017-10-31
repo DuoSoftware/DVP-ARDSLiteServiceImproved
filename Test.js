@@ -79,11 +79,11 @@ var requestMetadataHandler = require('./RequestMetaDataHandler');
 
 //--------------Get Resource Info-------------------------
 
-//resourceHandler.GetResource('test', 1, 103, 129, null).then(function (result) {
-//    console.log(JSON.stringify(result));
-//}).catch(function (ex) {
-//    console.log(ex);
-//});
+resourceHandler.GetResource('test', 1, 103, 129, null).then(function (result) {
+    console.log(JSON.stringify(result));
+}).catch(function (ex) {
+    console.log(ex);
+});
 
 //--------------Get Resource Status Info-------------------------
 
