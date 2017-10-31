@@ -6,7 +6,7 @@ var config = require('config');
 var validator = require('validator');
 var util = require('util');
 var q = require('q');
-var restClient = require('../RestClient');
+var restClient = require('dvp-ards_common_improved/RestClient');
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
 
 

@@ -4,7 +4,7 @@
 
 var q = require('q');
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
-var redisHandler = require('./RedisHandler');
+var redisHandler = require('dvp-ards_common_improved/RedisHandler');
 var util = require('util');
 
 

@@ -3,8 +3,8 @@
  */
 
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
-var redisHandler = require('./RedisHandler');
-var rabbitMqHandler = require('./RabbitMqHandler');
+var redisHandler = require('dvp-ards_common_improved/RedisHandler');
+var rabbitMqHandler = require('dvp-ards_common_improved/RabbitMqHandler');
 var q = require('q');
 var util = require('util');
 var config = require('config');

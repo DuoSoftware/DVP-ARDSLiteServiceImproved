@@ -8,7 +8,7 @@ var validator = require('validator');
 var util = require('util');
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
 var format = require("stringformat");
-var redisHandler = require('../RedisHandler.js');
+var redisHandler = require('dvp-ards_common_improved/RedisHandler.js');
 var Q = require('q');
 
 function getBreakThresholdValue(logKey, key) {

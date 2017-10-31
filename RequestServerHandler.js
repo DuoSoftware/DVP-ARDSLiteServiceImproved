@@ -3,9 +3,9 @@
  */
 
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
-var redisHandler = require('./RedisHandler');
+var redisHandler = require('dvp-ards_common_improved/RedisHandler');
 var tagHandler = require('./TagHandler');
-var restClient = require('./RestClient');
+var restClient = require('dvp-ards_common_improved/RestClient');
 var requestQueueAndStatusHandler = require('./RequestQueueAndStatusHandler');
 var q = require('q');
 var util = require('util');

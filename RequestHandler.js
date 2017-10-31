@@ -4,7 +4,7 @@
 
 var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
 var resourceService = require('./services/ResourceService');
-var redisHandler = require('./RedisHandler');
+var redisHandler = require('dvp-ards_common_improved/RedisHandler');
 var tagHandler = require('./TagHandler');
 var requestServerHandler = require('./RequestServerHandler');
 var requestMetadataHandler = require('./RequestMetaDataHandler');

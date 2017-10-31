@@ -10,7 +10,7 @@ var logger = require('dvp-common/LogHandler/CommonLogHandler.js').logger;
 var ardsMonitoringService = require('./services/ArdsMonitoringService');
 var resourceService = require('./services/ResourceService');
 var scheduleWorkerService = require('./services/ScheduleWorkerService');
-var redisHandler = require('./RedisHandler');
+var redisHandler = require('dvp-ards_common_improved/RedisHandler');
 var moment = require('moment');
 var util = require('util');
 
