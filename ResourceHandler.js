@@ -1522,7 +1522,8 @@ var updateLastConnectedTime = function (logKey, tenant, company, resourceId, tas
 
                     switch (event) {
                         case 'reserved':
-                            concurrencyObj.MaxRejectCount = maxRejectCount;
+                            if (maxRejectCount)
+                                concurrencyObj.MaxRejectCount = maxRejectCount;
                             concurrencyObj.LastConnectedTime = date.toISOString();
                             break;
                         case 'connected':
@@ -1712,9 +1713,12 @@ var updateSlotStateReserved = function (logKey, tenant, company, resourceId, tas
                 slotObj.HandlingRequest = sessionId;
                 slotObj.LastReservedTime = date.toISOString();
                 slotObj.OtherInfo = otherInfo;
-                slotObj.MaxReservedTime = maxReservedTime;
-                slotObj.MaxAfterWorkTime = maxAfterWorkTime;
-                slotObj.MaxFreezeTime = maxFreezeTime;
+                if (maxReservedTime)
+                    slotObj.MaxReservedTime = maxReservedTime;
+                if (maxAfterWorkTime)
+                    slotObj.MaxAfterWorkTime = maxAfterWorkTime;
+                if (maxFreezeTime)
+                    slotObj.MaxFreezeTime = maxFreezeTime;
 
                 redisHandler.R_VersionValidate(logKey, slotDataVersionKey, slotVersion).then(function (versionResult) {
 
@@ -2360,7 +2364,7 @@ var updateSlotStateBySessionId = function (logKey, tenant, company, resourceId, 
 
         var slotSearchTags = [];
 
-        if (direction === "outbound" && state.toLowerCase() === "connected") {
+        if (direction === "outbound" && state.toLowerCase() === "reserved") {
 
             slotSearchTags = [
                 'Tag:SlotInfo:tenant_' + tenant,
@@ -2422,7 +2426,8 @@ var updateSlotStateBySessionId = function (logKey, tenant, company, resourceId, 
 
                         if (selectedSlot) {
 
-                            return updateSlotStateConnected(logKey, tenant, company, resourceId, task, selectedSlot.SlotId, sessionId, direction, otherInfo);
+                            //return updateSlotStateConnected(logKey, tenant, company, resourceId, task, selectedSlot.SlotId, sessionId, direction, otherInfo);
+                            return updateSlotStateReserved(logKey, tenant, company, resourceId, task, selectedSlot.SlotId, sessionId, null, null, null, null, otherInfo);
 
                         } else {
 
