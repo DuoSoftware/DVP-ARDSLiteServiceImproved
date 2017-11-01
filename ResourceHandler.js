@@ -1499,7 +1499,7 @@ var updateLastConnectedTime = function (logKey, tenant, company, resourceId, tas
     try {
         logger.info('LogKey: %s - ResourceHandler -  UpdateLastConnectedTime :: tenant: %d :: company: %d :: resourceId: %s :: task: %s :: event: %s :: maxRejectCount: %d', logKey, tenant, company, resourceId, task, event, maxRejectCount);
 
-        if (event == "reserved" || event == "connected") {
+        if (event === "reserved" || event === "connected") {
             var concurrencyKey = util.format('ConcurrencyInfo:%d:%d:%d:%s', tenant, company, resourceId, task);
             var concurrencyVersionKey = util.format('Version:ConcurrencyInfo:%d:%d:%d:%s', tenant, company, resourceId, task);
             var concurrencyVersion = null;
@@ -1878,7 +1878,7 @@ var updateSlotStateConnected = function (logKey, tenant, company, resourceId, ta
                                 });
                             },
                             function (callback) {
-                                if (otherInfo == "" || otherInfo == null)
+                                if (otherInfo === "" || otherInfo === null)
                                     otherInfo = "Connected";
 
                                 resourceStatusMapper.SetResourceStatusChangeInfo(logKey, tenant, company, resourceId, 'SlotStatus', slotObj.State, task, {
@@ -2103,7 +2103,7 @@ var updateSlotStateAvailable = function (logKey, tenant, company, resourceId, ta
 
                     logger.error('LogKey: %s - ResourceHandler - UpdateSlotStateAvailable - Reject available request:: Connected', logKey);
                     deferred.reject('Reject available request:: Connected');
-                } else if (callingParty === "endFreeze" && slotObj.State != "AfterWork") {
+                } else if (callingParty === "endFreeze" && slotObj.State !== "AfterWork") {
                     logger.error('LogKey: %s - ResourceHandler - UpdateSlotStateAvailable - Reject available request:: EndFreeze', logKey);
                     deferred.reject('Reject available request:: EndFreeze');
                 } else {
@@ -2160,7 +2160,7 @@ var updateSlotStateAvailable = function (logKey, tenant, company, resourceId, ta
                                     });
                                 },
                                 function (callback) {
-                                    if (otherInfo == "" || otherInfo == null)
+                                    if (otherInfo === "" || otherInfo === null)
                                         otherInfo = "Connected";
 
                                     resourceStatusMapper.SetResourceStatusChangeInfo(logKey, tenant, company, resourceId, 'SlotStatus', slotObj.State, otherInfo, {

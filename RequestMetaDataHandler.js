@@ -167,7 +167,7 @@ var addRequestMetaData = function (logKey, tenant, company, metaData) {
                             }).catch(function (ex) {
 
                                 logger.error('LogKey: %s - RequestMetaDataHandler - AddRequestMetaData - dbConn.ArdsRequestMetaData failed :: %s', logKey, ex);
-                                if (ex.name == "SequelizeUniqueConstraintError") {
+                                if (ex.name === "SequelizeUniqueConstraintError") {
 
                                     deferred.reject('Request metadata already exists');
                                 } else {

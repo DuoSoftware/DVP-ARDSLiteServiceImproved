@@ -99,7 +99,7 @@ var processState = function (logKey, tenant, company, stateKey, resourceId, reso
                         deferred.resolve(statusObj);
                     }
 
-                } else if ((reason === "Outbound" || reason === "Inbound" || (reason === "Offline" && r_StatusObj.Mode != "Offline")) && r_StatusObj) {
+                } else if ((reason === "Outbound" || reason === "Inbound" || (reason === "Offline" && r_StatusObj.Mode !== "Offline")) && r_StatusObj) {
 
                     statusObj.Mode = reason;
 

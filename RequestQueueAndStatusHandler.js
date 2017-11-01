@@ -105,7 +105,7 @@ var setNextProcessingItem = function (logKey, queueId, processingHashId, current
 
         redisHandler.R_HGet(logKey, processingHashId, queueId).then(function (processingHashSession) {
 
-            if ((processingHashSession && processingHashSession == currentSession) || currentSession === "CreateHash") {
+            if ((processingHashSession && processingHashSession === currentSession) || currentSession === "CreateHash") {
 
                 var rejectedQueueId = util.format("%s:%s", queueId, "REJECTED");
                 redisHandler.R_LPop(logKey, rejectedQueueId).then(function (nextRejectedItem) {

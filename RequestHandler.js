@@ -338,7 +338,7 @@ var removeRequest = function (logKey, tenant, company, sessionId, reason) {
                         }
                     );
 
-                    if (reason == "NONE") {
+                    if (reason === "NONE") {
 
                         var pubQueueId = requestObj.QueueId.replace(/:/g, "-");
                         var pubQueueAnswered = util.format("EVENT:%s:%s:%s:%s:%s:%s:%s:%s:YYYY", tenant, company, "ARDS", "QUEUE", "ANSWERED", pubQueueId, "", requestObj.SessionId);
@@ -413,7 +413,7 @@ var rejectRequest = function (logKey, tenant, company, sessionId, reason) {
             if (requestData) {
 
                 var requestObj = JSON.parse(requestData);
-                if (reason == "NoSession" || reason == "ClientRejected") {
+                if (reason === "NoSession" || reason === "ClientRejected") {
 
                     var pubQueueId = requestObj.QueueId.replace(/:/g, "-");
                     var pubMessage = util.format("EVENT:%s:%s:%s:%s:%s:%s:%s:%s:YYYY", tenant, company, "ARDS", "QUEUE", "DROPPED", pubQueueId, "", requestObj.SessionId);
@@ -454,7 +454,7 @@ var continueRequest = function (logKey, tenant, company, sessionId, routingRespo
     try {
         logger.info('LogKey: %s - RequestHandler - ContinueRequest :: tenant: %d :: company: %d :: sessionId: %s :: routingResponse: %j', logKey, tenant, company, sessionId, routingResponse);
 
-        if (routingResponse && routingResponse != "" && routingResponse != "No matching resources at the moment") {
+        if (routingResponse && routingResponse !== "" && routingResponse !== "No matching resources at the moment") {
 
             var requestKey = util.format('Request:%d:%d:%s', tenant, company, sessionId);
             redisHandler.R_Get(logKey, requestKey).then(function (requestData) {
@@ -506,7 +506,7 @@ var continueRequest = function (logKey, tenant, company, sessionId, routingRespo
                                 }
                             ];
 
-                            if (requestObj.ReqHandlingAlgo == "QUEUE") {
+                            if (requestObj.ReqHandlingAlgo === "QUEUE") {
 
                                 asyncTasks.push(
                                     function (callback) {

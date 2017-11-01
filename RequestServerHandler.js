@@ -240,12 +240,12 @@ var sendRoutingCallback = function (logKey, callbackUrl, callbackOption, callbac
                 var httpUrl = util.format('%s? %s', callbackUrl, JSON.stringify(callbackData));
                 restClient.DoGetExternal(logKey, httpUrl).then(function (response) {
 
-                    if (response.code == "503" || response.result.startsWith("-ERR")) {
+                    if (response.code === 503 || response.result.startsWith("-ERR")) {
 
                         logger.error('LogKey: %s - RequestServerHandler - SendRoutingCallback - DoGetExternal failed externally', logKey);
                         deferred.resolve('re-addRequired');
 
-                    } else if (response.code == "200") {
+                    } else if (response.code === 200) {
 
                         logger.info('LogKey: %s - RequestServerHandler - SendRoutingCallback - DoGetExternal success', logKey);
                         deferred.resolve('setNextItem');
@@ -268,12 +268,12 @@ var sendRoutingCallback = function (logKey, callbackUrl, callbackOption, callbac
             case 'post':
                 restClient.DoPostExternal(logKey, callbackUrl, callbackData).then(function (response) {
 
-                    if (response.code == "503" || response.result.startsWith("-ERR")) {
+                    if (response.code === 503 || response.result.startsWith("-ERR")) {
 
                         logger.error('LogKey: %s - RequestServerHandler - SendRoutingCallback - DoPostExternal failed externally', logKey);
                         deferred.resolve('re-addRequired');
 
-                    } else if (response.code == "200") {
+                    } else if (response.code === 200) {
 
                         logger.info('LogKey: %s - RequestServerHandler - SendRoutingCallback - DoPostExternal success', logKey);
                         deferred.resolve('setNextItem');
