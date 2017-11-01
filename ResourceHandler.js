@@ -2614,4 +2614,6 @@ module.exports.GetResourceStatus = getResourceStatus;
 module.exports.GetResourcesByTags = getResourcesByTags;
 
 module.exports.UpdateSlotStateReserved = updateSlotStateReserved;
+module.exports.UpdateSlotStateConnected = updateSlotStateConnected;
+module.exports.UpdateSlotStateAvailable = updateSlotStateAvailable;
 module.exports.UpdateSlotStateBySessionId = updateSlotStateBySessionId;
