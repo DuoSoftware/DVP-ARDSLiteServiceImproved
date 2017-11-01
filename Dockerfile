@@ -1,4 +1,4 @@
-#FROM ubuntu
+##FROM ubuntu
 #RUN apt-get update
 #RUN apt-get install -y git nodejs npm
 #RUN git clone https://github.com/DuoSoftware/DVP-ARDSLiteServiceImproved.git /usr/local/src/ardsliteserviceimproved
