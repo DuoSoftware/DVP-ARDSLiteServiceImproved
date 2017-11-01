@@ -34,7 +34,7 @@
 	"Host": {
 		"LBIP":"LB_FRONTEND",
 		"LBPort":"LB_PORT",
-		"Port": "HOST_ARDSLITESERVICE_PORT",
+		"Port": "HOST_ARDSLITESERVICEIMPROVED_PORT",
 		"Version": "HOST_VERSION",
 		"UseMsgQueue": "HOST_USE_MSG_QUEUE"
 	},
