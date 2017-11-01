@@ -215,7 +215,7 @@ server.del('/DVP/API/:version/ARDS/requestserver/:serverid',authorization({resou
 });
 
 
-//---------------------------------Request Metadata---------------------------------------
+//---------------------------------Request Metadata--------------------------------------
 
 server.post('/DVP/API/:version/ARDS/requestmeta',authorization({resource:"requestmeta", action:"write"}), function (req, res, next) {
 
