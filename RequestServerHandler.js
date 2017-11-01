@@ -147,10 +147,14 @@ var getRequestServerByType = function (logKey, tenant, company, serverType, requ
         logger.info('LogKey: %s - RequestServerHandler - GetRequestServer :: tenant: %d :: company: %d :: serverType: %s :: requestType: %s', logKey, tenant, company, serverType, requestType);
 
         var requestServerSearchTags = [
-            'Tag:RequestServer:serverType_' + serverType,
-            'Tag:RequestServer:requestType_' + requestType,
-            'objType_RequestServer'
+            'Tag:RequestServer:objType_RequestServer'
         ];
+
+        if(serverType && serverType !== '*')
+            requestServerSearchTags.push('Tag:RequestServer:serverType_' + serverType);
+
+        if(requestType && requestType !== '*')
+            requestServerSearchTags.push('Tag:RequestServer:requestType_' + requestType);
 
         redisHandler.R_SInter(logKey, requestServerSearchTags).then(function (result) {
 
@@ -161,7 +165,13 @@ var getRequestServerByType = function (logKey, tenant, company, serverType, requ
             if (results) {
 
                 logger.info('LogKey: %s - RequestServerHandler - GetRequestServer - R_Get success :: %j', logKey, results);
-                deferred.resolve(JSON.parse(results));
+
+                var requestServers = [];
+                results.forEach(function (requestServerData) {
+                    requestServers.push(JSON.parse(requestServerData));
+                });
+
+                deferred.resolve(requestServers);
             } else {
 
                 logger.info('LogKey: %s - RequestServerHandler - GetRequestServer - R_Get No request server data found', logKey);
