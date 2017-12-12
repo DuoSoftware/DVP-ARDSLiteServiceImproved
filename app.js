@@ -899,6 +899,115 @@ server.del('/DVP/API/:version/ARDS/resource/:resourceid',authorization({resource
     return next();
 });
 
+server.get('/DVP/API/:version/ARDS/resource/:class/:type/:category',authorization({resource:"ardsresource", action:"read"}), function (req, res, next) {
+
+    var jsonString;
+    var logKey = uuid();
+    try {
+        logger.info('+++++++++++++++LogKey: %s - Start get request - GetResourcesByTags - req.params :: %j', logKey, req.params);
+
+        var tenant = parseInt(req.user.tenant);
+        var company = parseInt(req.user.company);
+        resourceHandler.GetResourcesByTags(logKey, tenant, company, req.params.class, req.params.type, req.params.category).then(function (result) {
+
+            logger.info('+++++++++++++++LogKey: %s - End get request - GetResourcesByTags success :: %s', logKey, result);
+            jsonString = messageFormatter.FormatMessage(undefined, "Get resources by tags success", true, result);
+            res.end(jsonString);
+
+        }).catch(function (ex) {
+
+            logger.error('+++++++++++++++LogKey: %s - End get request - GetResourcesByTags failed :: %s', logKey, ex);
+            if(ex.message) {
+                jsonString = messageFormatter.FormatMessage(ex, "Get resources by tags failed", false, undefined);
+            }else{
+                jsonString = messageFormatter.FormatMessage(undefined, ex, false, undefined);
+            }
+            res.end(jsonString);
+        });
+
+    } catch (ex) {
+
+        logger.error('+++++++++++++++LogKey: %s - End get request - GetResourcesByTags failed :: %s', logKey, ex);
+        jsonString = messageFormatter.FormatMessage(ex, "Get resources by tags failed", false, undefined);
+        res.end(jsonString);
+    }
+
+    return next();
+});
+
+server.get('/DVP/API/:version/ARDS/resource/:resourceid',authorization({resource:"ardsresource", action:"read"}), function (req, res, next) {
+
+    var jsonString;
+    var logKey = uuid();
+    try {
+        logger.info('+++++++++++++++LogKey: %s - Start get request - GetResource - req.params :: %j', logKey, req.params);
+
+        var tenant = parseInt(req.user.tenant);
+        var company = parseInt(req.user.company);
+        var resourceIdInt = parseInt(req.params.resourceid);
+        resourceHandler.GetResource(logKey, tenant, company, resourceIdInt, null).then(function (result) {
+
+            logger.info('+++++++++++++++LogKey: %s - End get request - GetResource success :: %s', logKey, result);
+            jsonString = messageFormatter.FormatMessage(undefined, "Get resource success", true, result);
+            res.end(jsonString);
+
+        }).catch(function (ex) {
+
+            logger.error('+++++++++++++++LogKey: %s - End get request - GetResource failed :: %s', logKey, ex);
+            if(ex.message) {
+                jsonString = messageFormatter.FormatMessage(ex, "Get resource failed", false, undefined);
+            }else{
+                jsonString = messageFormatter.FormatMessage(undefined, ex, false, undefined);
+            }
+            res.end(jsonString);
+        });
+
+    } catch (ex) {
+
+        logger.error('+++++++++++++++LogKey: %s - End get request - GetResource failed :: %s', logKey, ex);
+        jsonString = messageFormatter.FormatMessage(ex, "Get resource failed", false, undefined);
+        res.end(jsonString);
+    }
+
+    return next();
+});
+
+server.get('/DVP/API/:version/ARDS/resource/:resourceid/state',authorization({resource:"ardsresource", action:"read"}), function (req, res, next) {
+
+    var jsonString;
+    var logKey = uuid();
+    try {
+        logger.info('+++++++++++++++LogKey: %s - Start get request - GetResourceStatus - req.params :: %j', logKey, req.params);
+
+        var tenant = parseInt(req.user.tenant);
+        var company = parseInt(req.user.company);
+        var resourceIdInt = parseInt(req.params.resourceid);
+        resourceHandler.GetResourceStatus(logKey, tenant, company, resourceIdInt).then(function (result) {
+
+            logger.info('+++++++++++++++LogKey: %s - End get request - GetResourceStatus success :: %s', logKey, result);
+            jsonString = messageFormatter.FormatMessage(undefined, "Get resource status success", true, result);
+            res.end(jsonString);
+
+        }).catch(function (ex) {
+
+            logger.error('+++++++++++++++LogKey: %s - End get request - GetResourceStatus failed :: %s', logKey, ex);
+            if(ex.message) {
+                jsonString = messageFormatter.FormatMessage(ex, "Get resource status failed", false, undefined);
+            }else{
+                jsonString = messageFormatter.FormatMessage(undefined, ex, false, undefined);
+            }
+            res.end(jsonString);
+        });
+
+    } catch (ex) {
+
+        logger.error('+++++++++++++++LogKey: %s - End get request - GetResourceStatus failed :: %s', logKey, ex);
+        jsonString = messageFormatter.FormatMessage(ex, "Get resource status failed", false, undefined);
+        res.end(jsonString);
+    }
+
+    return next();
+});
 
 
 server.listen(config.Host.Port, function () {
