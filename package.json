@@ -20,7 +20,7 @@
     "async": "^2.5.0",
     "config": "^1.27.0",
     "deepcopy": "^0.6.3",
-    "dvp-ards_common_improved": "^1.0.1",
+    "dvp-ards_common_improved": "2.0.0",
     "dvp-common": "1.1.0",
     "dvp-dbmodels": "2.1.0",
     "moment": "^2.19.1",
